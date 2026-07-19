@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preis-Monitoring — Übersicht</title>
+<style>
+  :root {
+    --bg: #0a0c10; --card: #161a22; --border: #262c38;
+    --text: #eef1f5; --muted: #8b93a1; --radius: 16px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: var(--bg); color: var(--text); min-height: 100vh;
+    display: flex; align-items: center; justify-content: center; padding: 30px 16px;
+  }
+  .wrap { max-width: 480px; width: 100%; }
+  h1 { font-size: 22px; font-weight: 800; margin-bottom: 6px; text-align: center; }
+  .sub { color: var(--muted); font-size: 13px; text-align: center; margin-bottom: 32px; }
+  .card {
+    display: flex; align-items: center; gap: 16px;
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 20px; margin-bottom: 14px; text-decoration: none; color: var(--text);
+    transition: all 0.15s;
+  }
+  .card:hover { border-color: var(--accent, #ff7a3d); transform: translateY(-1px); }
+  .emoji { font-size: 32px; line-height: 1; }
+  .info { flex: 1; }
+  .title { font-size: 16px; font-weight: 700; margin-bottom: 3px; }
+  .desc { color: var(--muted); font-size: 12.5px; }
+  .arrow { color: var(--muted); font-size: 18px; }
+  .card.fitshop:hover { border-color: #ff7a3d; }
+  .card.hammer:hover { border-color: #ff7a3d; }
+  .card.sportstech:hover { border-color: #58a6ff; }
+  .footer { text-align: center; color: #4a5164; font-size: 11px; margin-top: 24px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>📊 Preis-Monitoring</h1>
+  <div class="sub">Automatisiertes Shop-Monitoring · täglich aktualisiert</div>
+
+  <a class="card fitshop" href="https://ali-sportstech.github.io/fitshop-dashboard/">
+    <div class="emoji">🏋️</div>
+    <div class="info">
+      <div class="title">fitshop.de</div>
+      <div class="desc">Preise, UVP, SALE-Badges — Konkurrenz-Monitoring</div>
+    </div>
+    <div class="arrow">→</div>
+  </a>
+
+  <a class="card hammer" href="https://ali-sportstech.github.io/hammer-dashboard/">
+    <div class="emoji">🔨</div>
+    <div class="info">
+      <div class="title">hammer.de</div>
+      <div class="desc">Preise, Coupons, Flash-Sale-Countdown — Konkurrenz-Monitoring</div>
+    </div>
+    <div class="arrow">→</div>
+  </a>
+
+  <a class="card sportstech" href="https://ali-sportstech.github.io/sportstech-dashboard/">
+    <div class="emoji">🏋️‍♂️</div>
+    <div class="info">
+      <div class="title">sportstech.de</div>
+      <div class="desc">Eigene Preise, UVP, Rabatte</div>
+    </div>
+    <div class="arrow">→</div>
+  </a>
+
+  <div class="footer">Erstellt von Alilab · Alle Dashboards passwortgeschützt</div>
+</div>
+</body>
+</html>
