@@ -3,81 +3,89 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Preis-Monitoring — Übersicht</title>
+<title>Sportstech Monitoring Hub</title>
 <style>
   :root {
     --bg: #0a0c10; --card: #161a22; --border: #262c38;
     --text: #eef1f5; --muted: #8b93a1; --radius: 16px;
+    --live: #3fb950; --stale: #d29922; --dead: #f85149; --accent: #4f8cff;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-    background: var(--bg); color: var(--text); min-height: 100vh;
-    display: flex; align-items: center; justify-content: center; padding: 30px 16px;
+    background: var(--bg); color: var(--text); min-height: 100vh; padding: 40px 20px;
   }
-  .wrap { max-width: 480px; width: 100%; }
-  h1 { font-size: 22px; font-weight: 800; margin-bottom: 6px; text-align: center; }
-  .sub { color: var(--muted); font-size: 13px; text-align: center; margin-bottom: 32px; }
-  .card {
-    display: flex; align-items: center; gap: 16px;
-    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 20px; margin-bottom: 14px; text-decoration: none; color: var(--text);
-    transition: all 0.15s;
+  .wrap { max-width: 960px; margin: 0 auto; }
+  header { text-align: center; margin-bottom: 36px; }
+  header h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.3px; }
+  header p { color: var(--muted); font-size: 14px; margin-top: 6px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+  a.card {
+    display: block; background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 20px; text-decoration: none; color: inherit;
+    transition: transform .15s ease, border-color .15s ease;
   }
-  .card:hover { border-color: var(--accent, #ff7a3d); transform: translateY(-1px); }
-  .emoji { font-size: 32px; line-height: 1; }
-  .info { flex: 1; }
-  .title { font-size: 16px; font-weight: 700; margin-bottom: 3px; }
-  .desc { color: var(--muted); font-size: 12.5px; }
-  .arrow { color: var(--muted); font-size: 18px; }
-  .card.fitshop:hover { border-color: #ff7a3d; }
-  .card.hammer:hover { border-color: #ff7a3d; }
-  .card.sportstech:hover { border-color: #58a6ff; }
-  .footer { text-align: center; color: #4a5164; font-size: 11px; margin-top: 24px; }
+  a.card:hover { transform: translateY(-2px); border-color: var(--accent); }
+  .card .top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+  .card h2 { font-size: 16px; font-weight: 600; }
+  .card .icon { font-size: 22px; }
+  .card p { color: var(--muted); font-size: 13px; line-height: 1.5; }
+  .meta { display: flex; align-items: center; gap: 8px; margin-top: 14px; font-size: 12px; color: var(--muted); }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot.live { background: var(--live); box-shadow: 0 0 6px var(--live); }
+  .dot.stale { background: var(--stale); }
+  .dot.dead { background: var(--dead); }
+  .badge { margin-left: auto; font-size: 11px; padding: 2px 8px; border-radius: 999px; background: rgba(79,140,255,.12); color: var(--accent); border: 1px solid rgba(79,140,255,.35); }
+  footer { text-align: center; color: var(--muted); font-size: 12px; margin-top: 32px; }
+  footer code { background: var(--card); border: 1px solid var(--border); padding: 2px 6px; border-radius: 6px; }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>📊 Preis-Monitoring</h1>
-  <div class="sub">Automatisiertes Shop-Monitoring · täglich aktualisiert</div>
-
-  <a class="card fitshop" href="https://ali-sportstech.github.io/fitshop-dashboard/">
-    <div class="emoji">🏋️</div>
-    <div class="info">
-      <div class="title">fitshop.de</div>
-      <div class="desc">Preise, UVP, SALE-Badges — Konkurrenz-Monitoring</div>
-    </div>
-    <div class="arrow">→</div>
-  </a>
-
-  <a class="card hammer" href="https://ali-sportstech.github.io/hammer-dashboard/">
-    <div class="emoji">🔨</div>
-    <div class="info">
-      <div class="title">hammer.de</div>
-      <div class="desc">Preise, Coupons, Flash-Sale-Countdown — Konkurrenz-Monitoring</div>
-    </div>
-    <div class="arrow">→</div>
-  </a>
-
-  <a class="card sportstech" href="https://ali-sportstech.github.io/sportstech-dashboard/">
-    <div class="emoji">🏋️‍♂️</div>
-    <div class="info">
-      <div class="title">sportstech.de</div>
-      <div class="desc">Eigene Preise, UVP, Rabatte</div>
-    </div>
-    <div class="arrow">→</div>
-  </a>
-
-  <a class="card sportstech" href="https://ali-sportstech.github.io/comparison-dashboard/">
-    <div class="emoji">🥊</div>
-    <div class="info">
-      <div class="title">Konkurrenz-Vergleich</div>
-      <div class="desc">sportstech.de vs. hammer.de + fitshop.de — Preisempfehlungen</div>
-    </div>
-    <div class="arrow">→</div>
-  </a>
-
-  <div class="footer">Erstellt von Alilab · Alle Dashboards passwortgeschützt</div>
+  <header>
+    <h1>📊 Sportstech Monitoring Hub</h1>
+    <p>Zentrale Übersicht aller Preis- &amp; Wettbewerbs-Dashboards · aktualisiert 03.09.2026 09:10</p>
+  </header>
+  <div class="grid">
+    <a class="card" href="https://ali-sportstech.github.io/sportstech-dashboard/">
+      <div class="top"><h2>sportstech.de</h2><span class="icon">🏋️</span></div>
+      <p>Eigene Produkte — Preisverlauf, Preismuster, UVP-Änderungen.</p>
+      <div class="meta"><span class="dot live"></span>Daten: 03.09. 08:46</div>
+    </a>
+    <a class="card" href="https://ali-sportstech.github.io/hammer-dashboard/">
+      <div class="top"><h2>hammer.de</h2><span class="icon">🔨</span></div>
+      <p>Wettbewerber — Preisverlauf, Rabatte, Flash-Sales.</p>
+      <div class="meta"><span class="dot live"></span>Daten: 03.09. 09:01</div>
+    </a>
+    <a class="card" href="https://ali-sportstech.github.io/fitshop-dashboard/">
+      <div class="top"><h2>fitshop.de</h2><span class="icon">🛒</span></div>
+      <p>Wettbewerber — Preisverlauf, Rabatte, UVP-Änderungen.</p>
+      <div class="meta"><span class="dot live"></span>Daten: 02.09. 09:31</div>
+    </a>
+    <a class="card" href="https://ali-sportstech.github.io/comparison-dashboard/">
+      <div class="top"><h2>Konkurrenz-Vergleich</h2><span class="icon">⚖️</span></div>
+      <p>sportstech ↔ hammer/fitshop — Fairness-Urteile, Segmente, Preisempfehlungen.</p>
+      <div class="meta"><span class="dot live"></span>Daten: 03.09. 08:46</div>
+    </a>
+    <a class="card" href="smartgym.html">
+      <div class="top"><h2>Smart Home Gym</h2><span class="icon">🏠</span></div>
+      <p>sGym Pro vs. Speediance, AEKE, Fitness Caddy — Bundle-Matrix, Fair-Price.</p>
+      <div class="meta"><span class="dot live"></span>Daten: 03.09. 07:01<span class="badge">hier gehostet</span></div>
+    </a>
+    <a class="card" href="https://ali-sportstech.github.io/quant-lab-dashboard/">
+      <div class="top"><h2>Quant Lab</h2><span class="icon">📈</span></div>
+      <p>Trading-Backtests &amp; Strategie-Validierung.</p>
+      <div class="meta"><span class="dot live"></span>extern<span class="badge">Trading</span></div>
+    </a>
+    <a class="card" href="https://ali-sportstech.github.io/eur-cny-tracker/">
+      <div class="top"><h2>EUR/CNY Tracker</h2><span class="icon">💶</span></div>
+      <p>Wechselkurs-Prognosen vs. Realität.</p>
+      <div class="meta"><span class="dot live"></span>extern<span class="badge">FX</span></div>
+    </a>
+  </div>
+  <footer>
+    Alle Dashboards passwortgeschützt · Passwort: <code>SportsGate2026!</code>
+  </footer>
 </div>
 </body>
 </html>
