@@ -22,8 +22,10 @@
   <div id="loading" style="color:#8b93a1;font-size:14px;">⏳ Wird geöffnet…</div>
   <div class="box" id="loginBox" style="display:none">
     <h1>🏋️ Smart Home Gym</h1>
-    <input type="password" id="pw" placeholder="Passwort" autocomplete="current-password" enterkeyhint="go">
-    <button onclick="checkPw()">Öffnen</button>
+    <form id="loginForm" autocomplete="off">
+    <input type="password" id="pw" name="password" placeholder="Passwort" autocomplete="new-password" enterkeyhint="go">
+    <button type="submit">Öffnen</button>
+    </form>
     <div class="err" id="err"></div>
   </div>
 <script>
@@ -44,12 +46,12 @@ async function checkPw() {
 }
 function renderDashboard() {
   const bytes = Uint8Array.from(atob(DASHBOARD_B64), c => c.charCodeAt(0));
-  const html = new TextDecoder('utf-8').decode(bytes);
-  document.open();
-  document.write(html);
-  document.close();
+  const blob = new Blob([bytes], {type: 'text/html;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  document.body.style.margin = '0';
+  document.body.innerHTML = '<iframe src="' + url + '" style="border:0;width:100vw;height:100vh;display:block;" title="Dashboard"></iframe>';
 }
-document.getElementById('pw').addEventListener('keydown', e => { if (e.key === 'Enter') checkPw(); });
+document.getElementById('loginForm').addEventListener('submit', e => { e.preventDefault(); checkPw(); });
 (function() {
   let stored = null;
   try { stored = localStorage.getItem('sportsgate_auth'); } catch (e) {}
