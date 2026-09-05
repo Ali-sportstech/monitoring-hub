@@ -35,7 +35,7 @@ async function checkPw() {
   const pw = document.getElementById('pw').value;
   const hash = await sha256(pw);
   if (hash === "576e7bbe08595735c33f4026c6f24ef0d78f11941729a063b10af5d6502fd157") {
-    sessionStorage.setItem('smartgym_dashboard_auth', hash);
+    try { localStorage.setItem('sportsgate_auth', hash); } catch (e) {}
     renderDashboard();
   } else {
     document.getElementById('err').textContent = 'Falsches Passwort.';
@@ -43,13 +43,15 @@ async function checkPw() {
 }
 function renderDashboard() {
   const bytes = Uint8Array.from(atob(DASHBOARD_B64), c => c.charCodeAt(0));
-  const blob = new Blob([bytes], {type: 'text/html;charset=utf-8'});
-  const url = URL.createObjectURL(blob);
-  window.location.replace(url);
+  const html = new TextDecoder('utf-8').decode(bytes);
+  document.open();
+  document.write(html);
+  document.close();
 }
 document.getElementById('pw').addEventListener('keydown', e => { if (e.key === 'Enter') checkPw(); });
 (function() {
-  const stored = sessionStorage.getItem('smartgym_dashboard_auth');
+  let stored = null;
+  try { stored = localStorage.getItem('sportsgate_auth'); } catch (e) {}
   if (stored === "576e7bbe08595735c33f4026c6f24ef0d78f11941729a063b10af5d6502fd157") {
     renderDashboard();
   }
