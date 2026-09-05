@@ -19,9 +19,10 @@
 </style>
 </head>
 <body>
-  <div class="box">
+  <div id="loading" style="color:#8b93a1;font-size:14px;">⏳ Wird geöffnet…</div>
+  <div class="box" id="loginBox" style="display:none">
     <h1>🏋️ Smart Home Gym</h1>
-    <input type="password" id="pw" placeholder="Passwort" autofocus>
+    <input type="password" id="pw" placeholder="Passwort" autocomplete="current-password" enterkeyhint="go">
     <button onclick="checkPw()">Öffnen</button>
     <div class="err" id="err"></div>
   </div>
@@ -54,6 +55,11 @@ document.getElementById('pw').addEventListener('keydown', e => { if (e.key === '
   try { stored = localStorage.getItem('sportsgate_auth'); } catch (e) {}
   if (stored === "576e7bbe08595735c33f4026c6f24ef0d78f11941729a063b10af5d6502fd157") {
     renderDashboard();
+  } else {
+    document.getElementById('loading').style.display = 'none';
+    const box = document.getElementById('loginBox');
+    box.style.display = 'block';
+    document.getElementById('pw').focus();
   }
 })();
 </script>
